@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload image</title>
+</head>
+<body>
+  <form id="form" >
+    <input id="id" type="text" name="id">
+    <input id="file" type="file" name="file">
+  </form>
+  <button onclick="submit()">Guardar</button>
+  <script>
+    const formEle = document.getElementById('form');
+    async function submit(){
+      const body = new FormData(formEle);
+      const url = 'http://localhost:8080/upload_image/upload.php';
+      const resp = await fetch(url, 
+      {
+        method: 'POST',
+        body: body,
+      }).then(resp => resp.json());
+      console.log(resp);
+    }
+  </script>
+</body>
+</html>
